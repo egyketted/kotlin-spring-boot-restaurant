@@ -1,0 +1,33 @@
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+  h2:
+    console:
+      enabled: true
+      path: /console/
+    datasource:
+      url: jdbc:h2:mem:testdb
+      driverClassName=org: org.h2.Driver
+      username: sa
+      password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  kafka:
+    bootstrap-servers: localhost:29092
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='charlie' password='charlie';
+        mechanism: PLAIN
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

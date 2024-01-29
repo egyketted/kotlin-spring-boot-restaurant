@@ -1,0 +1,21 @@
+type Query {
+    getMenu: MenuResponse!
+    getDishDetails(id: Int): DishResponse!
+    orderFood(id: Int): String!
+}
+
+type Mutation {
+    createDish(name:String!, price: Int!): DishResponse!
+    updateDish(id: Int!, name:String!, price: Int!): DishResponse!
+    deleteDish(id: Int!): DishResponse!
+}
+
+type MenuResponse {
+    dishes: [DishResponse]!
+}
+
+type DishResponse {
+    id: Int,
+    name: String,
+    price: Int
+}
